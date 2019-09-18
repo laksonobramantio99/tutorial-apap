@@ -42,7 +42,7 @@ public class RestoranController {
     }
 
     //URL Mapping view
-    @RequestMapping("/restoran/view♠")
+    @RequestMapping("/restoran/view")
     public String viewWithRequestParam(
             // Request Parameter untuk dipass
             @RequestParam(value = "idRestoran") String idRestoran, Model model
