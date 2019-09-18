@@ -40,3 +40,23 @@ Saya masih sedikit bingung. Saya membuat program `hitungumur` di branch `feat/tu
 - [x] Kenapa?
 Karena sebagai mahasiswa IT, saya harus memiliki kemampuan programming yang baik dan bisa 
 membuat aplikasi berskala perusahaan dengan baik dan benar. hehe
+
+---
+## Tutorial 2 - Gopud
+
+### What I have learned today
+1. Cobalah untuk menambahkan sebuah restoran dengan mengakses link berikut: 
+http://localhost:8080/restoran/add?idRestoran=1&nama=PanyuFC&alamat=Kantin%20Fasilkom&nomorTelepo=14022 
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
+    > Terjadi error, karena template html-nya belum diimplementasikan.
+
+2. Cobalah untuk menambahkan sebuah restoran dengan mengakses link berikut: 
+http://localhost:8080/restoran/add?idRestoran=2&nama=KentukuFC&alamat=Kantin%20FIK
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
+    > Terjadi error, karena parameter nomor telepon tidak ada, sedangkan pada source code yang dibuat, parameter nomor telepon itu wajib ada (required), sehingga ketika dijalankan terjadi error.
+
+3. Jika Papa APAP ingin melihat restoran PanyuFC, link apa yang harus diakses?
+    > Papa APAP bisa mengakses link ini [http://localhost:8080/restoran/view?idRestoran=1](http://localhost:8080/restoran/view?idRestoran=1) atau [http://localhost:8080/restoran/view/id-restoran/1](http://localhost:8080/restoran/view/id-restoran/1)
+
+4. Tambahkan 1 contoh restoran lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/restoran/viewall, apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+    > Ia akan menampilkan semua restoran yang telah ditambahkan. Berikut gambarnya ... ![Screenshot dari /restoran/viewall](https://i.ibb.co/LZnL4Zs/image.png)
