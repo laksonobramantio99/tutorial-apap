@@ -5,7 +5,6 @@ import apap.tutorial.gopud.service.RestoranService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,4 +102,17 @@ public class RestoranController {
         return "update-telephone-number";
     }
 
+    @RequestMapping("/restoran/delete/id/{idRestoran}")
+    public String deleteRestoran(
+            @PathVariable(value = "idRestoran") String idRestoran,
+            Model model
+            ) {
+
+        RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
+
+        restoranService.getRestoranList().remove(restoran);
+        model.addAttribute("idRestoran", idRestoran);
+
+        return "delete-restoran";
+    }
 }
