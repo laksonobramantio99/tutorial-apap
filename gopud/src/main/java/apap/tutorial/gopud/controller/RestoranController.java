@@ -50,6 +50,11 @@ public class RestoranController {
         // Mengambil objek RestoranModel yang dituju
         RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
 
+        if (restoran == null) {
+            model.addAttribute("idRestoranFromParameter", idRestoran);
+            return "error-idTidakDitemukan";
+        }
+
         // Add model restoran ke "resto" untuk dirender
         model.addAttribute("resto", restoran);
 
@@ -75,10 +80,15 @@ public class RestoranController {
     public String viewWithPathVariable(
             // Path Variable untuk dipass
             @PathVariable(value = "idRestoran") String idRestoran, Model model
-    ) {
+            ) {
 
         // Mengambil objek RestoranModel yang dituju
         RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
+
+        if (restoran == null) {
+            model.addAttribute("idRestoranFromParameter", idRestoran);
+            return "error-idTidakDitemukan";
+        }
 
         // Add model restoran ke "resto" untuk dirender
         model.addAttribute("resto", restoran);
@@ -95,6 +105,12 @@ public class RestoranController {
             ) {
 
         RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
+
+        if (restoran == null) {
+            model.addAttribute("idRestoranFromParameter", idRestoran);
+            return "error-idTidakDitemukan";
+        }
+
         restoran.setNomorTelepon(nomorTelepon);
 
         model.addAttribute("resto", restoran);
@@ -109,6 +125,11 @@ public class RestoranController {
             ) {
 
         RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
+
+        if (restoran == null) {
+            model.addAttribute("idRestoranFromParameter", idRestoran);
+            return "error-idTidakDitemukan";
+        }
 
         restoranService.getRestoranList().remove(restoran);
         model.addAttribute("idRestoran", idRestoran);
