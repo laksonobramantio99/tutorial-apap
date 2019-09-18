@@ -88,4 +88,19 @@ public class RestoranController {
         return "view-restoran";
     }
 
+    @RequestMapping("/restoran/update/id-restoran/{idRestoran}/nomor-telepon/{nomorTelepon}")
+    public String updateTelephoneNumber(
+            @PathVariable(value = "idRestoran") String idRestoran,
+            @PathVariable(value = "nomorTelepon") Integer nomorTelepon,
+            Model model
+            ) {
+
+        RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
+        restoran.setNomorTelepon(nomorTelepon);
+
+        model.addAttribute("resto", restoran);
+
+        return "update-telephone-number";
+    }
+
 }
