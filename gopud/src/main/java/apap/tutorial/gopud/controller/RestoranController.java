@@ -72,4 +72,20 @@ public class RestoranController {
         return "viewall-restoran";
     }
 
+    @RequestMapping("/restoran/view/id-restoran/{idRestoran}")
+    public String viewWithPathVariable(
+            // Path Variable untuk dipass
+            @PathVariable(value = "idRestoran") String idRestoran, Model model
+    ) {
+
+        // Mengambil objek RestoranModel yang dituju
+        RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
+
+        // Add model restoran ke "resto" untuk dirender
+        model.addAttribute("resto", restoran);
+
+        // Return view template
+        return "view-restoran";
+    }
+
 }
