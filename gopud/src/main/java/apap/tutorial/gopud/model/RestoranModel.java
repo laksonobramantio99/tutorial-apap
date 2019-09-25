@@ -5,14 +5,12 @@ public class RestoranModel {
     private String nama;
     private String alamat;
     private Integer nomorTelepon;
-    private boolean isActive;
 
     public RestoranModel(String idRestoran, String nama, String alamat, Integer nomorTelepon) {
         this.idRestoran = idRestoran;
         this.nama = nama;
         this.alamat = alamat;
         this.nomorTelepon = nomorTelepon;
-        this.isActive = true;
     }
 
     public String getIdRestoran() {
@@ -45,13 +43,5 @@ public class RestoranModel {
 
     public void setNomorTelepon(Integer nomorTelepon) {
         this.nomorTelepon = nomorTelepon;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 }
