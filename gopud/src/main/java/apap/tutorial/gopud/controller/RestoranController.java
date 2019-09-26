@@ -87,6 +87,20 @@ public class RestoranController {
         return "viewall-restoran";
     }
 
+    @RequestMapping(value = "/restoran/delete/{id}", method = RequestMethod.GET)
+    public String deleteRestoran(@PathVariable Long id, Model model) {
+        RestoranModel restoran = restoranService.getRestoranByIdRestoran(id).get();
+        model.addAttribute("restoran", restoran);
+
+        List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
+        if (menuList.size() != 0) { // jika jumlah menunya tidak 0
+            return "error-delete-restoran";
+        }
+
+        restoranService.deleteRestoran(restoran);
+        return "delete-restoran";
+    }
+
     //==================
 
 //    // URL Mapping add
