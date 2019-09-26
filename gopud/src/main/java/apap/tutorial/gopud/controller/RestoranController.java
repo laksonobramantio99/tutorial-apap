@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 public class RestoranController {
@@ -44,8 +45,16 @@ public class RestoranController {
     public String view(
             @RequestParam(value = "idRestoran") Long idRestoran, Model model
             ) {
+        RestoranModel restoran;
 
-        RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
+        try {
+            restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
+        }
+        catch (NoSuchElementException e) {
+            model.addAttribute("idRestoranFromParam", idRestoran);
+            return "error-restoran-tidakditemukan";
+        }
+
         model.addAttribute("resto", restoran);
 
         List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
@@ -56,8 +65,17 @@ public class RestoranController {
 
     @RequestMapping(value = "restoran/change/{idRestoran}", method = RequestMethod.GET)
     public String changeRestoranFormPage(@PathVariable Long idRestoran, Model model) {
-        RestoranModel existingRestoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
-        model.addAttribute("restoran", existingRestoran);
+        RestoranModel restoran;
+
+        try {
+            restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
+        }
+        catch (NoSuchElementException e) {
+            model.addAttribute("idRestoranFromParam", idRestoran);
+            return "error-restoran-tidakditemukan";
+        }
+
+        model.addAttribute("restoran", restoran);
         return "form-change-restoran";
     }
 
@@ -89,7 +107,16 @@ public class RestoranController {
 
     @RequestMapping(value = "/restoran/delete/{id}", method = RequestMethod.GET)
     public String deleteRestoran(@PathVariable Long id, Model model) {
-        RestoranModel restoran = restoranService.getRestoranByIdRestoran(id).get();
+        RestoranModel restoran;
+
+        try {
+            restoran = restoranService.getRestoranByIdRestoran(id).get();
+        }
+        catch (NoSuchElementException e) {
+            model.addAttribute("idRestoranFromParam", id);
+            return "error-restoran-tidakditemukan";
+        }
+
         model.addAttribute("restoran", restoran);
 
         List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
