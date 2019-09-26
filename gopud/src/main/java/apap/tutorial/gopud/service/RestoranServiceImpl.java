@@ -3,6 +3,7 @@ package apap.tutorial.gopud.service;
 import apap.tutorial.gopud.model.RestoranModel;
 import apap.tutorial.gopud.repository.RestoranDb;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,6 +24,11 @@ public class RestoranServiceImpl implements RestoranService{
     @Override
     public List<RestoranModel> getRestoranList() {
         return restoranDb.findAll();
+    }
+
+    @Override
+    public List<RestoranModel> getRestoranListOrderByNama() {
+        return restoranDb.findAll(Sort.by("nama"));
     }
 
     @Override

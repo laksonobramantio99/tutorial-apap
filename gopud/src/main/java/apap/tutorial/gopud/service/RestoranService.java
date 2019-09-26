@@ -12,6 +12,8 @@ public interface RestoranService {
     // Method untuk mendapatkan semua data Restoran yang tersimpan
     List<RestoranModel> getRestoranList();
 
+    List<RestoranModel> getRestoranListOrderByNama();
+
     Optional<RestoranModel> getRestoranByIdRestoran(Long idRestoran);
 
     RestoranModel changeRestoran(RestoranModel restoranModel);

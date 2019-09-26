@@ -72,6 +72,21 @@ public class RestoranController {
         return "change-restoran";
     }
 
+    // Latihan No.1
+    // URL mapping view-all
+    @RequestMapping("/restoran/view-all")
+    public String viewall(Model model) {
+
+        // Mengambil semua objek RestoranModel yang ada
+        List<RestoranModel> listRestoran = restoranService.getRestoranListOrderByNama();
+
+        // Add model restoran ke "resto" untuk dirender
+        model.addAttribute("restoList", listRestoran);
+
+        // Return view template
+        return "viewall-restoran";
+    }
+
     //==================
 
 //    // URL Mapping add

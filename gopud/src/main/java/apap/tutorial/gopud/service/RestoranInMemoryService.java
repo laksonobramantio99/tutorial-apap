@@ -27,6 +27,11 @@ public class RestoranInMemoryService implements RestoranService{
     }
 
     @Override
+    public List<RestoranModel> getRestoranListOrderByNama() {
+        return null;
+    }
+
+    @Override
     public Optional<RestoranModel> getRestoranByIdRestoran(Long idRestoran) {
         for (RestoranModel restoran : listRestoran) {
             if (restoran.getIdRestoran().equals(idRestoran)) {
