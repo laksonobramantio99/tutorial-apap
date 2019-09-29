@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Error: Delete Restoran</title>
+</head>
+<body>
+    <h2>Error</h2>
+    <h2 th:text="'Restoran dengan ID ' + ${restoran.idRestoran} + ' tidak dapat dihapus karena masih memiliki menu.'"></h2>
+</body>
+</html>
