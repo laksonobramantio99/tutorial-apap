@@ -55,7 +55,7 @@ Cara kerja JPA Repository dan penggunakan Serializable.
 
 ---
 
-## Tutorial 3
+## Tutorial 4
 
 ### What I have learned today
 1. Jelaskan yang anda pelajari dari melakukan latihan nomor 2, dan jelaskan tahapan bagaimana anda menyelesaikan latihan nomor 2.
