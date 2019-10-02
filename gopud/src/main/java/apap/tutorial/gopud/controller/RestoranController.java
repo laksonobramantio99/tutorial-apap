@@ -23,13 +23,15 @@ public class RestoranController {
     private MenuService menuService;
 
     @RequestMapping("/")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("page_title", "Gopud");
         return "home";
     }
 
     @RequestMapping(value = "/restoran/add", method = RequestMethod.GET)
      public String addRestoranFormPage(Model model) {
         RestoranModel newRestoran = new RestoranModel();
+        model.addAttribute("page_title", "Add Restoran");
         model.addAttribute("restoran", newRestoran);
         return "form-add-restoran";
     }
@@ -37,6 +39,7 @@ public class RestoranController {
     @RequestMapping(value = "/restoran/add", method = RequestMethod.POST)
     public String addRestoranSubmit(@ModelAttribute RestoranModel restoran, Model model) {
         restoranService.addRestoran(restoran);
+        model.addAttribute("page_title", "Add Restoran");
         model.addAttribute("namaResto", restoran.getNama());
         return "add-restoran";
     }
@@ -50,6 +53,7 @@ public class RestoranController {
         List<MenuModel> menuList = menuService.getListMenuOrderByHargaAsc(restoran.getIdRestoran());
         restoran.setListMenu(menuList);
 
+        model.addAttribute("page_title", "View Restoran");
         model.addAttribute("resto", restoran);
 
         return "view-restoran";
@@ -84,6 +88,7 @@ public class RestoranController {
             return "error-restoran-tidakditemukan";
         }
 
+        model.addAttribute("page_title", "Change Restoran");
         model.addAttribute("restoran", restoran);
         return "form-change-restoran";
     }
@@ -94,6 +99,7 @@ public class RestoranController {
                                            Model model
                                            ) {
         RestoranModel newRestoranData = restoranService.changeRestoran(restoran);
+        model.addAttribute("page_title", "Change Restoran");
         model.addAttribute("restoran", newRestoranData);
 
         return "change-restoran";
@@ -109,6 +115,7 @@ public class RestoranController {
 
         // Add model restoran ke "resto" untuk dirender
         model.addAttribute("restoList", listRestoran);
+        model.addAttribute("page_title", "View All Restoran");
 
         // Return view template
         return "viewall-restoran";
@@ -127,6 +134,7 @@ public class RestoranController {
         }
 
         model.addAttribute("restoran", restoran);
+        model.addAttribute("page_title", "Delete Restoran");
 
         List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
         if (menuList.size() != 0) { // jika jumlah menunya tidak 0
