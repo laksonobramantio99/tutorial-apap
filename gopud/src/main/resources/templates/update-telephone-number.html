@@ -2,8 +2,11 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <title>Update Telephone Number</title>
+    <object th:include="fragment/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragment/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragment/fragment :: navbar"></nav>
     <h2 th:text="'Nomor telepon restoran dengan ID ' + ${resto.idRestoran}
         + ' telah ter-update menjadi ' + ${resto.nomorTelepon}"></h2>
 </body>

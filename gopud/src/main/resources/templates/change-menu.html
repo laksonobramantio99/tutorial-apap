@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Change Menu</title>
+    <object th:include="fragment/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragment/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragment/fragment :: navbar"></nav>
 <h2 th:text="'Menu dengan nama ' + ${menu.nama} + ' berhasil diubah.'"></h2>
 </body>
 </html>

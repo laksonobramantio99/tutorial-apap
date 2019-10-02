@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Restoran</title>
+    <object th:include="fragment/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragment/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragment/fragment :: navbar"></nav>
 <h3>Tambah Restoran</h3>
 <form th:action="@{/restoran/add}" th:object="${restoran}" method="POST">
     Nama: <br>
