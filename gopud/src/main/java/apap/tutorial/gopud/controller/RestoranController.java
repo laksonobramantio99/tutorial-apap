@@ -45,22 +45,31 @@ public class RestoranController {
     public String view(
             @RequestParam(value = "idRestoran") Long idRestoran, Model model
             ) {
-        RestoranModel restoran;
+        RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
 
-        try {
-            restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
-        }
-        catch (NoSuchElementException e) {
-            model.addAttribute("idRestoranFromParam", idRestoran);
-            return "error-restoran-tidakditemukan";
-        }
+        List<MenuModel> menuList = menuService.getListMenuOrderByHargaAsc(restoran.getIdRestoran());
+        restoran.setListMenu(menuList);
 
         model.addAttribute("resto", restoran);
 
-        List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
-        model.addAttribute("menuList", menuList);
-
         return "view-restoran";
+
+//        RestoranModel restoran;
+//
+//        try {
+//            restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
+//        }
+//        catch (NoSuchElementException e) {
+//            model.addAttribute("idRestoranFromParam", idRestoran);
+//            return "error-restoran-tidakditemukan";
+//        }
+//
+//        model.addAttribute("resto", restoran);
+//
+//        List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
+//        model.addAttribute("menuList", menuList);
+//
+//        return "view-restoran";
     }
 
     @RequestMapping(value = "restoran/change/{idRestoran}", method = RequestMethod.GET)
