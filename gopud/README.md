@@ -52,3 +52,24 @@ Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
 
 ## What I did not understand
 Cara kerja JPA Repository dan penggunakan Serializable.
+
+---
+
+## Tutorial 3
+
+### What I have learned today
+1. Jelaskan yang anda pelajari dari melakukan latihan nomor 2, dan jelaskan tahapan bagaimana anda menyelesaikan latihan nomor 2.
+    > Pada latihan nomor 2 saya mempelajari tentang cara meng-injeksi suatu variable ke template html walau melalui fragment, jadi dengan hal tersebut saya dapat membuat halaman html yang dinamis. <br>
+    Untuk pengerjaannya, pertama saya mengubah file fragment.html, saya tambahkan `th:text="${page_title}"` pada tempat dimana ia akan berada. Lalu saya tambahkan statement `model.addAttribute("page_title", "Add Menu");` pada setiap method di Controller namun valuenya disesuaikan dengan nama page-nya.
+
+2. Jelaskan yang anda pelajari dari latihan nomor 3, dan jelaskan tahapan bagaimana anda menyelesaikan latihan nomor 3.
+    > [ belum dijawab ]
+
+3. Jelaskan perbedaan `th:include` dan `th:replace`.
+    > `th:include` akan meng-insert/memasukkan fragment sebagai body pada host tag yang dituju tetapi tidak memasukkan fragment tag terluarnya. Sedangkan `th:replace` akan mengganti (substitute) host tag yang dituju dengan fragment yang akan digunakan.
+
+4. Jelaskan bagaimana penggunaan `th:object` beserta tujuannya.
+    > `th:objek` digunakan untuk menentukan objek yang terikat dengan data formulir yang dikirimkan.
+
+## What I did not understand
+> Cara mengerjakan Latihan No. 3
