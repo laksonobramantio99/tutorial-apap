@@ -39,6 +39,7 @@ public class MenuController {
         model.addAttribute("idRestoran", idRestoran);
         model.addAttribute("resto", restoran);
         model.addAttribute("menu", menu);
+        model.addAttribute("page_title", "Add Menu");
 
         return "form-add-menu";
     }
@@ -52,6 +53,8 @@ public class MenuController {
             menuService.addMenu(menu);
         }
 
+        model.addAttribute("page_title", "Add Menu");
+
         return "add-menu";
     }
 
@@ -63,6 +66,8 @@ public class MenuController {
 
         restoran.getListMenu().add(new MenuModel());
         model.addAttribute("resto", restoran);
+        model.addAttribute("page_title", "Add Menu");
+
         return "form-add-menu";
     }
 
@@ -72,6 +77,8 @@ public class MenuController {
         restoran.getListMenu().remove(rowId.intValue());
 
         model.addAttribute("resto", restoran);
+        model.addAttribute("page_title", "Add Menu");
+        
         return "form-add-menu";
     }
 
