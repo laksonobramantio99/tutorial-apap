@@ -63,7 +63,7 @@ Cara kerja JPA Repository dan penggunakan Serializable.
     Untuk pengerjaannya, pertama saya mengubah file fragment.html, saya tambahkan `th:text="${page_title}"` pada tempat dimana ia akan berada. Lalu saya tambahkan statement `model.addAttribute("page_title", "Add Menu");` pada setiap method di Controller namun valuenya disesuaikan dengan nama page-nya.
 
 2. Jelaskan yang anda pelajari dari latihan nomor 3, dan jelaskan tahapan bagaimana anda menyelesaikan latihan nomor 3.
-    > [ belum dijawab ]
+    > Pada latihan nomor 3 ini saya mengubah method add menu pada MenuController agar dapat melakukan multiple input, kemudian saya juga membuat method addRow dan deleteRow untuk melakukan penambahan atau pengurangan row input serta mengubah method POST addMenu untuk melakukan penyimpanan multiple menu ke database. Lalu pada file html form-add-menu saya membuat tombol untuk melakukan penambahan dan penghapusan row yang akan memanggil method pada MenuController yang sebelumnya telah saya buat dan terakhir untuk field-nya saya memanfaatkan iteration status.
 
 3. Jelaskan perbedaan `th:include` dan `th:replace`.
     > `th:include` akan meng-insert/memasukkan fragment sebagai body pada host tag yang dituju tetapi tidak memasukkan fragment tag terluarnya. Sedangkan `th:replace` akan mengganti (substitute) host tag yang dituju dengan fragment yang akan digunakan.
