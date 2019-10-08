@@ -2,8 +2,11 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <title>Error: Delete Restoran</title>
+    <object th:include="fragment/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragment/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragment/fragment :: navbar"></nav>
     <h2>Error</h2>
     <h2 th:text="'Restoran dengan ID ' + ${restoran.idRestoran} + ' tidak dapat dihapus karena masih memiliki menu.'"></h2>
 </body>

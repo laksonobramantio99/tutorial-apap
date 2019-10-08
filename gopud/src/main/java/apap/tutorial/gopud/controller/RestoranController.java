@@ -23,13 +23,15 @@ public class RestoranController {
     private MenuService menuService;
 
     @RequestMapping("/")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("page_title", "Gopud");
         return "home";
     }
 
     @RequestMapping(value = "/restoran/add", method = RequestMethod.GET)
      public String addRestoranFormPage(Model model) {
         RestoranModel newRestoran = new RestoranModel();
+        model.addAttribute("page_title", "Add Restoran");
         model.addAttribute("restoran", newRestoran);
         return "form-add-restoran";
     }
@@ -37,6 +39,7 @@ public class RestoranController {
     @RequestMapping(value = "/restoran/add", method = RequestMethod.POST)
     public String addRestoranSubmit(@ModelAttribute RestoranModel restoran, Model model) {
         restoranService.addRestoran(restoran);
+        model.addAttribute("page_title", "Add Restoran");
         model.addAttribute("namaResto", restoran.getNama());
         return "add-restoran";
     }
@@ -45,22 +48,32 @@ public class RestoranController {
     public String view(
             @RequestParam(value = "idRestoran") Long idRestoran, Model model
             ) {
-        RestoranModel restoran;
+        RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
 
-        try {
-            restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
-        }
-        catch (NoSuchElementException e) {
-            model.addAttribute("idRestoranFromParam", idRestoran);
-            return "error-restoran-tidakditemukan";
-        }
+        List<MenuModel> menuList = menuService.getListMenuOrderByHargaAsc(restoran.getIdRestoran());
+        restoran.setListMenu(menuList);
 
+        model.addAttribute("page_title", "View Restoran");
         model.addAttribute("resto", restoran);
 
-        List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
-        model.addAttribute("menuList", menuList);
-
         return "view-restoran";
+
+//        RestoranModel restoran;
+//
+//        try {
+//            restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
+//        }
+//        catch (NoSuchElementException e) {
+//            model.addAttribute("idRestoranFromParam", idRestoran);
+//            return "error-restoran-tidakditemukan";
+//        }
+//
+//        model.addAttribute("resto", restoran);
+//
+//        List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
+//        model.addAttribute("menuList", menuList);
+//
+//        return "view-restoran";
     }
 
     @RequestMapping(value = "restoran/change/{idRestoran}", method = RequestMethod.GET)
@@ -75,6 +88,7 @@ public class RestoranController {
             return "error-restoran-tidakditemukan";
         }
 
+        model.addAttribute("page_title", "Change Restoran");
         model.addAttribute("restoran", restoran);
         return "form-change-restoran";
     }
@@ -85,6 +99,7 @@ public class RestoranController {
                                            Model model
                                            ) {
         RestoranModel newRestoranData = restoranService.changeRestoran(restoran);
+        model.addAttribute("page_title", "Change Restoran");
         model.addAttribute("restoran", newRestoranData);
 
         return "change-restoran";
@@ -100,6 +115,7 @@ public class RestoranController {
 
         // Add model restoran ke "resto" untuk dirender
         model.addAttribute("restoList", listRestoran);
+        model.addAttribute("page_title", "View All Restoran");
 
         // Return view template
         return "viewall-restoran";
@@ -118,6 +134,7 @@ public class RestoranController {
         }
 
         model.addAttribute("restoran", restoran);
+        model.addAttribute("page_title", "Delete Restoran");
 
         List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
         if (menuList.size() != 0) { // jika jumlah menunya tidak 0

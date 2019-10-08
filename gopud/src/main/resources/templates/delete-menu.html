@@ -2,8 +2,11 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <title>Delete Menu</title>
+    <object th:include="fragment/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragment/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h2 th:text="'Menu dengan nama ' + ${menu.nama} + ' telah dihapus.'"></h2>
+<nav th:replace="fragment/fragment :: navbar"></nav>
+<h2 th:text="'Berhasil menghapus menu.'"></h2>
 </body>
 </html>
