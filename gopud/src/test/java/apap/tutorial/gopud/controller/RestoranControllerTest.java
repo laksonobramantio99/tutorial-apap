@@ -1,5 +1,6 @@
 package apap.tutorial.gopud.controller;
 
+import apap.tutorial.gopud.model.MenuModel;
 import apap.tutorial.gopud.model.RestoranModel;
 import apap.tutorial.gopud.service.MenuService;
 import apap.tutorial.gopud.service.RestoranService;
@@ -17,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,6 +57,15 @@ public class RestoranControllerTest {
         dummyRestoranModel.setNomorTelepon(14000);
         dummyRestoranModel.setListMenu(new ArrayList<>());
         return dummyRestoranModel;
+    }
+
+    private MenuModel generateDummyMenuModel(Long id) {
+        MenuModel dummyMenu = new MenuModel();
+        dummyMenu.setId(id);
+        dummyMenu.setNama("menu" + id);
+        dummyMenu.setHarga(BigInteger.valueOf(1));
+        dummyMenu.setDurasiMasak(10);
+        return dummyMenu;
     }
 
     @Test
@@ -108,5 +119,30 @@ public class RestoranControllerTest {
                 .andExpect(model().attribute("namaResto", is(nama)));
     }
 
+    @Test
+    public void viewRestoranTest() throws Exception {
+        RestoranModel restoran = generateDummyRestoranModel(1);
+
+        List<MenuModel> listMenu = new ArrayList<>();
+        for (int i=1; i<=2; i++) {
+            MenuModel menu = generateDummyMenuModel((long) i);
+            menu.setRestoran(restoran);
+            listMenu.add(menu);
+        }
+        restoran.setListMenu(listMenu);
+
+        when (restoranService.getRestoranByIdRestoran(1L)).thenReturn(Optional.of(restoran));
+        when (menuService.getListMenuOrderByHargaAsc(1L)).thenReturn(listMenu);
+
+        mockMvc.perform(get("/restoran/view")
+                .param("idRestoran", "1")
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsString("Informasi Restoran")))
+                .andExpect(model().attribute("page_title", is("View Restoran")))
+                .andExpect(model().attribute("resto", is(restoran)));
+        verify(restoranService, times(1)).getRestoranByIdRestoran(1L);
+        verify(menuService, times(1)).getListMenuOrderByHargaAsc(1L);
+    }
 }
 
