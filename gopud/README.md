@@ -55,7 +55,7 @@ Cara kerja JPA Repository dan penggunakan Serializable.
 
 ---
 
-## Tutorial 4
+## Tutorial 4 - Thymeleaf
 
 ### What I have learned today
 1. Jelaskan yang anda pelajari dari melakukan latihan nomor 2, dan jelaskan tahapan bagaimana anda menyelesaikan latihan nomor 2.
@@ -71,5 +71,66 @@ Cara kerja JPA Repository dan penggunakan Serializable.
 4. Jelaskan bagaimana penggunaan `th:object` beserta tujuannya.
     > `th:objek` digunakan untuk menentukan objek yang terikat dengan data formulir yang dikirimkan.
 
-## What I did not understand
-> Cara mengerjakan Latihan No. 3
+---
+
+## Tutorial 5 - Testing
+
+### What I have learned today
+
+#### Latihan
+No. 1 - Before
+![](https://i.ibb.co/q5jbn9C/before1.jpg)
+After
+![](https://i.ibb.co/z62T2BV/after1.jpg)
+<br><br>
+No. 2 - Before
+![](https://i.ibb.co/DbFqsZp/before2.jpg)
+After
+![](https://i.ibb.co/wzssQT8/after2.jpg)
+<br><br>
+No. 3 - After
+![](https://i.ibb.co/jrpqgQv/image.png)
+
+#### Pertanyaan
+1. Jelaskan bagian mana saja dari test yang dibuat pada latihan no 2 adalah given, when, dan and then. <br>
+    Berikut bagian **given**. Bagian ini akan melakukan inisiasi apa-apa saja yang akan dibutuhkan.
+    ```
+    RestoranModel restoran = generateDummyRestoranModel(1);
+
+    List<MenuModel> listMenu = new ArrayList<>();
+    for (int i=1; i<=2; i++) {
+        MenuModel menu = generateDummyMenuModel((long) i);
+        menu.setRestoran(restoran);
+        listMenu.add(menu);
+    }
+    restoran.setListMenu(listMenu);
+
+    when (restoranService.getRestoranByIdRestoran(1L)).thenReturn(Optional.of(restoran));
+    when (menuService.getListMenuOrderByHargaAsc(1L)).thenReturn(listMenu); 
+    ```
+
+    Berikut bagian **when**. Bagian ini akan melakukan interaksi dengan controller.
+    ```
+    mockMvc.perform(get("/restoran/view")
+            .param("idRestoran", "1")
+    )
+    ```
+
+    Berikut bagian **and then**. Bagian ini akan melakukan pengecekan terhadap interaksi yang diharapkan.
+    ```
+            .andExpect(status().isOk())
+            .andExpect(content().string(Matchers.containsString("Informasi Restoran")))
+            .andExpect(model().attribute("page_title", is("View Restoran")))
+            .andExpect(model().attribute("resto", is(restoran)));
+    verify(restoranService, times(1)).getRestoranByIdRestoran(1L);
+    verify(menuService, times(1)).getListMenuOrderByHargaAsc(1L);
+    ```
+
+2. Jelaskan perbedaan line coverage dan logic coverage. <br>
+    > Line coverage mengecek berapa banyak baris code yang tercakupi (dijalankan) sedangkan logic coverage akan mengecek atau code meng-handle logic code yang berupa branching (seperti if else), sehingga nantinya logic coverage dapat membantu penambahan line coverage secara keseluruhan. 
+
+3. Pada keadaan ideal, apa yang seharusnya dibuat terlebih dahulu, code atau unit test? Mengapa seperti itu? Apa akibatnya jika urutannya dibalik, adakah risiko tak terlihat yang mungkin terjadi?<br>
+    > Yang paling ideal adalah membuat unit test-nya terlebih dahulu, karena dengan dibuatnya unit test terlebih dahulu maka programmer tahu apa yang harus dibuat dan sampai mana batasan-batasan program yang perlu diimplementasi.
+
+4. [Bonus] Jelaskan mengapa pada latihan no 3, main class spring tidak diikutsertakan ke dalam perhitungan coverage? Apa saja yang dapat menyebabkan suatu class dapat di-exclude dari perhitungan code coverage.<br>
+    > Karena main class spring merupakan source code bawaan dari framework yang sama sekali tidak kita ubah, namun ada beberapa baris code pada main class tersebut yang tidak akan tercover ketika kita menjalankan aplikasi spring secara normal, sehingga lebih baik main class tersebut di-exclude dari perhitungan coverage.
