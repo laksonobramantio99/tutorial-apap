@@ -27,6 +27,7 @@ public class RestoranRestController {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field");
         } else {
+            restoran.setIdRestoran(1L);
             return restoranRestService.createRestoran(restoran);
         }
     }
