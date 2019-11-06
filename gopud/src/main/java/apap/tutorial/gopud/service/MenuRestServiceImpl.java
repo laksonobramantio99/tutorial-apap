@@ -2,6 +2,13 @@ package apap.tutorial.gopud.service;
 
 import apap.tutorial.gopud.model.MenuModel;
 import apap.tutorial.gopud.repository.MenuDb;
+import apap.tutorial.gopud.rest.Setting;
+import apap.tutorial.gopud.rest.MenuChefDetail;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +20,8 @@ import java.util.Optional;
 @Service
 @Transactional
 public class MenuRestServiceImpl implements MenuRestService {
+    private final WebClient webClient;
+
     @Autowired
     private MenuDb menuDb;
 
@@ -49,5 +58,16 @@ public class MenuRestServiceImpl implements MenuRestService {
     @Override
     public void deleteMenu(Long idMenu) {
         menuDb.delete(getMenuByIdMenu(idMenu));
+    }
+
+    // Customer Service
+    public MenuRestServiceImpl(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl(Setting.menuUrl).build();
+    }
+
+    @Override
+    public Mono<MenuChefDetail> getMenuByChef(String chef) {
+        return this.webClient.get().uri("/api/v1/restoran/chef?nama=" + chef)
+                .retrieve().bodyToMono(MenuChefDetail.class);
     }
 }

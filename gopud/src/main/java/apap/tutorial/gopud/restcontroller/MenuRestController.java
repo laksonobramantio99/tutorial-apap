@@ -1,6 +1,7 @@
 package apap.tutorial.gopud.restcontroller;
 
 import apap.tutorial.gopud.model.MenuModel;
+import apap.tutorial.gopud.rest.MenuChefDetail;
 import apap.tutorial.gopud.service.MenuRestService;
 import apap.tutorial.gopud.service.RestoranRestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -69,5 +72,10 @@ public class MenuRestController {
     @GetMapping(value = "/menus")
     private List<MenuModel> retrieveListMenu() {
         return menuRestService.retrieveListMenu();
+    }
+
+    @GetMapping(value = "/restoran/chef")
+    private Mono<MenuChefDetail> getMenuChef( @RequestParam(value = "nama") String chef) {
+        return menuRestService.getMenuByChef(chef);
     }
 }
