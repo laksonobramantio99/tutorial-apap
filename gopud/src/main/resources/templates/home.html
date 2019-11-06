@@ -56,7 +56,7 @@
                             <input type="text" name="username" class="form-control">
 
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control">
+                            <input pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control" name="password" type="password"/>
 
                             <label>Role</label>
                             <select name="role" class="form-control">
