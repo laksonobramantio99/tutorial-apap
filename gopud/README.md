@@ -134,3 +134,19 @@ No. 3 - After
 
 4. [Bonus] Jelaskan mengapa pada latihan no 3, main class spring tidak diikutsertakan ke dalam perhitungan coverage? Apa saja yang dapat menyebabkan suatu class dapat di-exclude dari perhitungan code coverage.<br>
     > Karena main class spring merupakan source code bawaan dari framework yang sama sekali tidak kita ubah, namun ada beberapa baris code pada main class tersebut yang tidak akan tercover ketika kita menjalankan aplikasi spring secara normal, sehingga lebih baik main class tersebut di-exclude dari perhitungan coverage.
+
+---
+
+## Tutorial 6 - Web Service
+
+### What I have learned today
+
+#### Latihan
+1. Apa itu postman? Apa kegunaan dari postman?
+    > Postman adalah sebuah tool bagi developer untuk dapat mengatur web service khususnya API, karena pada postman kita bisa membuat request dengan method GET, POST, PUT, DELETE, dan-lain-lain. Adapun kegunaan-kegunaan dari postman ialah antara lain untuk Sharing Collection API for Documentation, Testing API, Realtime Collaboration Team, Monitoring API, Integration. 
+
+2. Apa kegunaan dari annotation @JsonIgnoreProperties?
+    > Kegunaan dari anotasi @JsonIgnoreProperties ialah untuk men-ignore atribut yang telah dispesifikasikan di kelas tertentu. Atribut-atribut yang telah 'ditandai' oleh anotasi @JsonIgnoreProperties tidak akan ikut ke dalam serialisasi dan deserialisasi JSON.
+
+3. Apa itu ResponseEntity dan apa kegunaannya?
+    > ResponseEntity adalah sebuah entitas dari seluruh HTTP response yang diberikan. Termasuk di dalamnya kode status, headers, dan body. Dengan ResponseEntity, informasi yang didapat dari sebuah response lebih lengkap sehingga dari sisi penggunaannya dapat lebih fleksibel.
