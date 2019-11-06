@@ -24,4 +24,16 @@ public class UserServiceImpl implements UserService {
         String hashedPassword = passwordEncoder.encode(password);
         return hashedPassword;
     }
+
+    @Override
+    public UserModel findByUsername(String username) {
+        return userDb.findByUsername(username);
+    }
+
+    @Override
+    public UserModel changePassword(UserModel userModel, String newPassword) {
+        String encodedPassword = encrypt(newPassword);
+        userModel.setPassword(encodedPassword);
+        return userDb.save(userModel);
+    }
 }

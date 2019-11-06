@@ -71,6 +71,30 @@
             </div>
         </div>
         <br>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Update Password</div>
+                    <div class="card-body">
+                        <form th:action="@{/user/changePassword}" method="post">
+                            <label>Password Lama</label>
+                            <input type="password" name="old-password" class="form-control">
+
+                            <label>Password Baru</label>
+                            <input type="password" name="new-password" class="form-control">
+
+                            <label>Konfirmasi Password Baru</label>
+                            <input type="password" name="confirm-new-password" class="form-control">
+
+                            <br/>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
     </div>
 
 </body>
