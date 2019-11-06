@@ -150,3 +150,25 @@ No. 3 - After
 
 3. Apa itu ResponseEntity dan apa kegunaannya?
     > ResponseEntity adalah sebuah entitas dari seluruh HTTP response yang diberikan. Termasuk di dalamnya kode status, headers, dan body. Dengan ResponseEntity, informasi yang didapat dari sebuah response lebih lengkap sehingga dari sisi penggunaannya dapat lebih fleksibel.
+
+---
+
+## Tutorial 6 - Web Service
+
+### What I have learned today
+
+#### Latihan
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+    > Otentikasi adalah proses pembuktian identitas pengguna. Sedangkan otorisasi terjadi setelah proses otentikasi selesai. Otorisasi menentukan izin yang diberikan kepada pengguna yang diautentikasi. Ia memeriksa apakah pengguna memiliki akses ke suatu sumber daya atau tidak.
+    Otentikasi terjadi saat pengguna melakukan login. Sedangkan otorisasi terjadi seperti pada saat penambahan user, yang memiliki wewenang untuk menambahkan user adalah user dengan role ADMIN, berarti role ADMIN terotorisasi untuk melakukan penambahan user.
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!
+    > BCryptPasswordEncoder adalah sebuah class di Java yang mengimplemetasi interface `PasswordEncoder` dan berguna dalam mengengkripsi password. 
+    BCryptPasswordEncoder akan menerima plain text password kemudian akan mengenkripsi plain text tersebut dengan algoritma BCrypt.
+
+3. Jelaskan secara singkat apa itu UUID dan mengapa kita memakai UUID di UserModel.java?
+    > UUID (Universally Unique Identifier) ialah kumpulan 36 karakter (string) yang dibuat secara acak (random) dan unik dengan teknik khusus. UUID terdiri dari 32 karakter alphanumerik dan 4 karakter tanda hubung (strip).
+    Kita menggunakan UUID dengan alasan untuk mengamankan data. Karena dengan UUID kita akan mendapatkan ID dari suatu model user dengan ID acak, sedangkan jika dengan Auto Increment biasa kita  mendapat ID yang berurutan dan mudah diketahui/ditebak. Selain itu, dengan UUID kita bisa mendapat ID yang sangat unik sehingga berguna untuk primary key.
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?
+    > Class tersebut berguna untuk mengambil data terkait user. Sedangkan UserServiceImpl.java lebih untuk mengurus layanan yang berinteraksi dengan DB User Model.
