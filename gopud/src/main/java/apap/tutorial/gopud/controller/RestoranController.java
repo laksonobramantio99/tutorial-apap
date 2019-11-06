@@ -22,11 +22,11 @@ public class RestoranController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping("/")
-    public String home(Model model) {
-        model.addAttribute("page_title", "Gopud");
-        return "home";
-    }
+//    @RequestMapping("/")
+//    public String home(Model model) {
+//        model.addAttribute("page_title", "Gopud");
+//        return "home";
+//    }
 
     @RequestMapping(value = "/restoran/add", method = RequestMethod.GET)
      public String addRestoranFormPage(Model model) {
