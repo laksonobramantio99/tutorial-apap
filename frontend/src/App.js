@@ -23,14 +23,14 @@ export default class App extends React.Component {
               <List
                 title="Our Product"
                 items={dummyItems}
-                onItemClick={this.handleItemClick}
+                onItemClick={this.handleItemClickAdd}
               />
             </div>
             <div className="col-sm">
               <List
                 title="My Favourite"
                 items={favItems}
-                onItemClick={this.handleItemClick}
+                onItemClick={this.handleItemClickRemove}
               />
             </div>
           </div>
@@ -39,12 +39,20 @@ export default class App extends React.Component {
     )
   }
 
-  handleItemClick = item => {
+  handleItemClickAdd = item => {
     const newItems = [...this.state.favItems];
     const newItem = {...item};
     const targetInd = newItems.findIndex(it => it.id === newItem.id);
     if(targetInd < 0) newItems.push(newItem);
-    else newItems.splice(targetInd, 1);
+    // else newItems.splice(targetInd, 1);
+    this.setState({ favItems: newItems });
+  };
+
+  handleItemClickRemove = item => {
+    const newItems = [...this.state.favItems];
+    const newItem = {...item};
+    const targetInd = newItems.findIndex(it => it.id === newItem.id);
+    if(!(targetInd < 0)) newItems.splice(targetInd, 1);
     this.setState({ favItems: newItems });
   };
 }

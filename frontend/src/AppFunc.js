@@ -13,17 +13,27 @@ function App() {
     // here is the illustration for this situation below is the return value of
     // useState [favItems, setFavItems] = [state, setState]
     const [favItems, setFavItems] = useState(() => []);
-    function handleItemClick(item) {
+    function handleItemClickAdd(item) {
         // immutability
         const newItems = [...favItems];
         const newItem = { ...item };
         // find index of item with id
         const targetInd = newItems.findIndex(it => it.id === newItem.id);
         if (targetInd < 0) newItems.push(newItem);
-        else newItems.splice(targetInd, 1); // delete 1 item at index targetInd
         // schedule to set a new state
         setFavItems(newItems);
-    }
+    };
+    function handleItemClickRemove(item) {
+        // immutability
+        const newItems = [...favItems];
+        const newItem = { ...item };
+        // find index of item with id
+        const targetInd = newItems.findIndex(it => it.id === newItem.id);
+        if (!(targetInd < 0)) newItems.splice(targetInd, 1);
+        // schedule to set a new state
+        setFavItems(newItems);
+    };
+
     return (
         <div className="container-fluid">
             <h1 className="text-center">
@@ -36,14 +46,14 @@ function App() {
                         <List 
                         title="Our Menu" 
                         items={dummyItems} 
-                        onItemClick={handleItemClick}
+                        onItemClick={handleItemClickAdd}
                         />
                     </div>
                     <div className="col-sm">
                         <List 
                         title="My Favorite" 
                         items={favItems} 
-                        onItemClick={handleItemClick}
+                        onItemClick={handleItemClickRemove}
                         />
                     </div>
                 </div>

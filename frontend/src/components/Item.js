@@ -18,6 +18,3 @@ export default function Item(props) {
 
     );   
 }
-
-//aoidaodubiuwdquoqd
-//ini komment
