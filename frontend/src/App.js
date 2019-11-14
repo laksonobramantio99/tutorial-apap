@@ -11,6 +11,7 @@ export default class App extends React.Component {
     };
   }
   render() {
+    var lengthFav = this.state.favItems.length;
     const { favItems } = this.state;
     const ShowFavorite = () => (
       <div className="col-sm">
@@ -19,6 +20,15 @@ export default class App extends React.Component {
           items={favItems}
           onItemClick={this.handleItemClickRemove}
         />
+      </div>
+    )
+    const EmptyState = () => (
+      <div className="col-sm">
+        <h3 style={style.heading}>My Favorite</h3>
+        <div className="text-center">
+          <h4>Belum ada item yang dipilih</h4>
+          <h5>Klik salah satu item di daftar Menu</h5>
+        </div>
       </div>
     )
 
@@ -38,7 +48,8 @@ export default class App extends React.Component {
                 onItemClick={this.handleItemClickAdd}
               />
             </div>
-            {this.state.showFavorite && <ShowFavorite/>}
+            {this.state.showFavorite && lengthFav > 0 && <ShowFavorite/>}
+            {this.state.showFavorite && lengthFav === 0 && <EmptyState/>}
           </div>
         </div>
       </div>
@@ -75,3 +86,9 @@ export default class App extends React.Component {
     } 
   }
 }
+
+const style = {
+  heading: {
+      fontFamily: "courier new"
+  }
+};
