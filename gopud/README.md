@@ -172,3 +172,26 @@ No. 3 - After
 
 4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?
     > Class tersebut berguna untuk mengambil data terkait user. Sedangkan UserServiceImpl.java lebih untuk mengurus layanan yang berinteraksi dengan DB User Model.
+
+---
+
+## Tutorial 8 - React.js
+
+### What I have learned today
+
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.<br/>
+    Yang saya lakukan pada tutorial 8 ini adalah membuat sebuah single page application dengan menggunakan framwork react.js.
+    React adalah sebuah framework front-end yang dibuat menggunakan Javascript, dan react ini berbasis component dalam penggunaannya.
+
+    Saya membuat dua buah komponen, yaitu komponen `Item` dan `List`. Komponen `Item` menggambarkan sebuah button yang berisi sebuah menu beserta deskripsinya. `List` merepresentasikan kumpulan dari komponen `Item`.
+
+    Komponen `Item`
+    ![](https://i.ibb.co/RztsgNR/image.png)
+
+    Komponen `List`
+    ![](https://i.ibb.co/SnSgT0m/image.png)
+
+    Kemudian kedua component tersebut digunakan dalam file `App.js`. File `App.js`-lah yang akan menjadi tampilan dari halaman yang akan dibuka nanti. Pada file tersebut di-include component `Item` dan `List`. Component tersebut nantinya akan digunakan sesuai kebutuhan.
+    
+    File `App.js`
+    ![](https://i.ibb.co/0FGC34x/image.png)
