@@ -195,3 +195,36 @@ No. 3 - After
     
     File `App.js`
     ![](https://i.ibb.co/0FGC34x/image.png)
+
+---
+
+## Tutorial 9 - React.js II
+
+### What I have learned today
+
+1. Ceritakan langkah-langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah-langkah tersebut?<br>
+    Dalam mengerjakan LATIHAN no. 1, saya mengubah state `nama`, `nomorTelepon`, `alamat`, dan `rating` yang ada di `Restorans.js` menjadi String kosong kembali.
+    Karena kita ingin me-reset agar state-state tersebut kembali kosong/bersih.  
+
+2. Jelaskan fungsi dari async dan await!
+	`async` dan `await` berfungsi dalam menangani proses asynchronous pada Javascript.<br>
+	`async` → berfungsi untuk mengubah suatu function menjadi function yang asynchronous.<br>
+	`await` → menunda eksekusi hingga proses asynchronous tersebut selesai.
+
+3. Masukkan jawaban dari TODO (Screenshot) pada Component Lifecycle pada pertanyaan ini.
+    Sebelum <br>
+    ![](https://i.ibb.co/ctx2qGy/image.png) <br>
+    Sesudah <br>
+    ![](https://i.ibb.co/dQb270N/image.png)
+
+4. Jelaskan fungsi dari `componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount`.
+Notes : Penjelasan harus mencantumkan "kapan fungsi dipanggil" dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.
+    - `componentDidMount`: fungsi ini dipanggil setelah semua components selesai di-mounting (dibuat dan dirender).<br> 
+    Contoh: Ketika kita ingin melakukan API call.
+    - `shouldComponentUpdate`: fungsi ini digunakan untuk menentukan apakah sebuah component akan di render ulang atau tidak. Method ini akan mengembalikan nilai boolean true atau false, jika true maka component akan di render ulang atau sebaliknya.<br> 
+    Contoh: Ketika kita ingin menentukan apakah ingin ada perubahan halaman ketika ada perubahan props.
+    - `componentDidUpdate`: fungsi ini dipanggil setelah component di re-render pada cycle update.<br>
+    Contoh: Melakukan pemanggilan API setelah ada suatu update dari perubahan props atau state.
+    - `componentWillReceiveProps`: fungsi ini dipanggil sebelum component menerima props yang value-nya telah berubah.<br>
+    - `componentWillUnmount`: fungsi ini dipanggil ketika component  dihapus dari DOM.
+    
