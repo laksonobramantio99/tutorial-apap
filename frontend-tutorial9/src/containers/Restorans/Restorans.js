@@ -10,6 +10,7 @@ class Restorans extends Component {
         super(props);
         this.state = {
             restorans: [],
+
             isLoading: false,
             isCreate: false,
             isEdit: false,
@@ -17,7 +18,9 @@ class Restorans extends Component {
             nama: "",
             alamat: "",
             nomorTelepon: "",
-            rating: ""
+            rating: "",
+
+            search: ""
         }
     };
 
@@ -33,6 +36,11 @@ class Restorans extends Component {
 
     render() {
         console.log("render()");
+        const filteredRestorans = this.state.restorans.filter(restoran => {
+            return (restoran.nama.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1) ||
+                    (restoran.alamat.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1) ;
+        });
+
         return (
             <React.Fragment>
                 <Modal show={this.state.isCreate || this.state.isEdit}
@@ -48,10 +56,13 @@ class Restorans extends Component {
                     >
                         + Add New Restoran
                     </button>
+                    
+                    {/* Search bar */}
+                    <input type="text" class="form-control mt-3" placeholder="Search..." onChange={this.onChangeSearch} />
                 </div>
                 <div className={classes.Restorans}>
                     {this.state.restorans &&
-                        this.state.restorans.map(restoran =>
+                        filteredRestorans.map(restoran =>
                             <Restoran
                                 key={restoran.id}
                                 nama={restoran.nama}
@@ -192,6 +203,7 @@ class Restorans extends Component {
                 ...response.data[key]
             });
         }
+
         this.setState({
             restorans: fetchedRestorans
         });
@@ -212,6 +224,10 @@ class Restorans extends Component {
             alamat: "",
             rating: ""
         });
+    };
+
+    onChangeSearch = e => {
+        this.setState({ search: e.target.value });
     };
 }
 
