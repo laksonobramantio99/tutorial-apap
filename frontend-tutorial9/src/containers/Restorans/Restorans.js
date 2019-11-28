@@ -124,6 +124,7 @@ class Restorans extends Component {
         this.setState({ isLoading: true });
         this.addRestoran();
         this.canceledHandler();
+        this.clearForm();
     }
 
     async addRestoran() {
@@ -204,6 +205,14 @@ class Restorans extends Component {
         this.setState({isCreate: false, isEdit: false});
     };
 
+    clearForm = () => {
+        this.setState({
+            nama: "",
+            nomorTelepon: "",
+            alamat: "",
+            rating: ""
+        });
+    };
 }
 
 export default Restorans;
