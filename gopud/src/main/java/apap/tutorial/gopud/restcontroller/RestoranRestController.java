@@ -17,6 +17,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RestoranRestController {
     @Autowired
     private RestoranRestService restoranRestService;
@@ -27,7 +28,7 @@ public class RestoranRestController {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field");
         } else {
-            restoran.setIdRestoran(1L);
+//            restoran.setIdRestoran(1L);
             return restoranRestService.createRestoran(restoran);
         }
     }

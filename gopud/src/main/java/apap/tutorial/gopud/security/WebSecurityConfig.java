@@ -18,9 +18,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
+                .antMatchers("/api/v1/**").permitAll()
                 .antMatchers("/restoran/**").hasAnyAuthority("MERCHANT")
                 .antMatchers("/user/addUser").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
